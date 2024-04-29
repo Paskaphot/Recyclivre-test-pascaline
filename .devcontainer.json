@@ -1,0 +1,20 @@
+{
+    "name": "Gateway",
+    "dockerComposeFile": "./docker-compose.yaml",
+    "service": "gateway",
+    "workspaceFolder": "/www",
+    "shutdownAction": "none",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+				"esbenp.prettier-vscode",
+				"junstyle.php-cs-fixer",
+				"bmewburn.vscode-intelephense-client",
+				"mehedidracula.php-namespace-resolver",
+				"cvergne.vscode-php-getters-setters-cv",
+				"neilbrayfield.php-docblocker",
+				"mblode.twig-language-2"
+			]
+        }
+    }
+}

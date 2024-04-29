@@ -1,0 +1,12 @@
+version: '3.9'
+
+services:
+    gateway:
+        build:
+            context: .
+            dockerfile: ./docker/gateway/Dockerfile
+        volumes:
+            - .:/www:delegated
+        command: symfony server:start --no-tls
+        ports:
+            - 8000:8000

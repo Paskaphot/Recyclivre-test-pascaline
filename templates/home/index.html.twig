@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <img src="{{ asset('build/images/logo.svg') }}" />
+
+    <h1 class="p-2 bg-gray-50">Test</h1>
+    <p>Ceci est un test</p>
+
+    <div id="app-jquery"></div>
+    <div id="app-vue"></div>
+    <div id="app-react"></div>
+
+    {% for book in books %}
+        <img src="{{ book_images_url(book) }}" />
+    {% endfor %}
+{% endblock %}
