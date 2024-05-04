@@ -1,13 +1,49 @@
-/*
- * Welcome to your app's main JavaScript file!
- *
- * We recommend including the built version of this JavaScript file
- * (and its CSS file) in your base layout (base.html.twig).
- */
+import Swiper from 'swiper';
+import { Navigation } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
 
-// any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.css';
 
+// init Swiper:
+const swiper = new Swiper('.swiper', {
+    modules: [Navigation],
+    autoHeight: true,
+    loop: true,
+    spaceBetween: 16,
+    breakpoints: {
+        // when window width is >= xs
+        480: {
+            slidesPerView: 2,
+        },
+        // when window width is >= md
+        768: {
+            slidesPerView: 3,
+        },
+        // when window width is >= lg
+        1024: {
+            slidesPerView: 4,
+        },
+    },
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
+    a11y: {
+        itemRoleDescriptionMessage: 'carousel',
+        slideLabelMessage: 'Carrousel de livres',
+        prevSlideMessage: 'Livre précédent',
+        nextSlideMessage: 'Livre suivant',
+    },
+});
+
+// handle toogle nav:
 const $ = require('jquery');
 
-$('#app-jquery').text('Hello from jquery');
+$( ".navToggle" ).on( "click", function() {
+    $(this).toggleClass('active');
+    $( ".navContent" ).slideToggle( "slow", function() {
+    });
+});
+
+

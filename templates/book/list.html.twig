@@ -1,14 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Pascaline Test Home{% endblock %}
+{% block title %}Pascaline Test Books{% endblock %}
 
 {% block content %}
-    <h1 class="font-display text-5xl">
-        <span>Bonjour Yannis et Martin !</span>
-        <img src="{{ asset('build/images/hello.svg') }}" alt="" class="inline w-12" />
-    </h1>
-
-    <p class="mt-4">Bienvenue sur mon test Recyclivre, j'ai beaucoup apprécié notre échange de mardi dernier et le temps que vous m'avez consacré.</p>
+    <h1 class="font-display text-5xl">Littérature d'occasion</h1>
     <p class="mt-8">
         Parmesan mozzarella parmesan. Roquefort everyone loves cheddar cheddar squirty cheese gouda red leicester port-salut. Fondue gouda squirty cheese ricotta fondue st. agur blue cheese monterey jack gouda. Mozzarella.
         Fromage the big cheese croque monsieur. Manchego manchego queso cheese strings feta boursin cheese and biscuits gouda. Danish fontina lancashire parmesan melted cheese cheeseburger airedale caerphilly swiss. Emmental taleggio.
@@ -16,13 +11,9 @@
     </p>
 
     <section class="mt-10">
-        <h2 class="font-display text-3xl">Nouveautés</h1>
+        <h2 class="font-display text-3xl">Ces livres pourraient vous plaire</h1>
         <div class="swiper mt-4">
             <div class="swiper-wrapper">
-                {# Je n'ai pas réussi à utiliser le findLastWarehoused du BookRepository malgré plusieurs tentatives :( #}
-                {# {% for book in (books|findLastWarehoused) %} #}
-                {# {% for book in findLastWarehoused(books) %} #}
-                {# {% set data = books|findLastWarehoused %} #}
                 {% for book in books %}
                     <div class="swiper-slide flex flex-col items-center gap-2 bg-lighter rounded-lg p-8">
                         <img class="max-w-32" alt="couverture"src="{{ book_images_url(book) }}" />
@@ -38,8 +29,28 @@
                     </div>
                 {% endfor %}
             </div>
-            <div focusable="true" class="swiper-button-prev"></div>
-            <div focusable="true" class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
         </div>
+    </section>
+
+    <section class="mt-10">
+        <h2 class="font-display text-3xl">Tous nos livres</h1>
+        <ul class="flex gap-4 flex-wrap mt-4">      
+            {% for book in books %}
+                <li class="grow w-full xs:w-[--2cols] sm:w-[--3cols] lg:w-[--4cols] xs:max-w-[--2cols] sm:max-w-[--3cols] lg:max-w-[--4cols] flex flex-col items-center gap-2 bg-lighter rounded-lg p-8">
+                    <img class="max-w-32" alt="couverture"src="{{ book_images_url(book) }}" />
+                    <p class="text-lg font-semibold">{{ book.title }}</p>
+                    <p>{{ book.author }}</p>
+                    <p class="text-lg font-semibold">{{ book.price }} €</p>
+                    <form class="pt-2" action="#" onsubmit="event.preventDefault();">
+                        <button type="submit" class="button">
+                            <svg aria-hidden="true" focusable="false" class="fill-current w-6 h-6" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" xml:space="preserve"><g><path d="M64.6,32.5v-7.6c0-8.4-6.8-15.2-15.2-15.2c-8.4,0-15.2,6.8-15.2,15.2v7.6H21.2l-3.1,51l0,0.2c0,4.9,4,8.9,8.9,8.9h44.8   c4.9,0,8.9-4,8.9-8.9l-3.1-51.2H64.6z M39.1,24.9c0-5.6,4.6-10.2,10.2-10.2c5.7,0,10.2,4.6,10.2,10.2v7.6H39.1V24.9z"/></g></svg>
+                            <span class="">Ajouter</span>
+                        </button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
     </section>
 {% endblock %}

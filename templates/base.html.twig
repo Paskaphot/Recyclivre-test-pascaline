@@ -2,7 +2,8 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{% block title %}Pascaline Test{% endblock %}</title>
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
@@ -14,6 +15,60 @@
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        {% block header %}
+            <header class="flex items-center gap-2 md:gap-4 sticky top-0 z-20 max-xl:px-4 max-md:pb-4 max-md:flex-wrap bg-white shadow-md">
+                <button type="button" class="navToggle xl:hidden shrink-0">
+                    <span class="navToggle__bar">
+                        <span class="sr-only">Basculer le menu</span>
+                    </span>
+                </button>
+                
+                <div class="shrink-0 p-2 max-xl:px-0 max-md:grow max-md:flex max-md:justify-center ">
+                    <img src="{{ asset('build/images/logo.svg') }}" alt="logo" class="max-h-full w-36 md:w-56" />
+                </div>
+
+                <div class="grow flex justify-center max-md:min-w-full md:pr-4">
+                    <form class="relative w-full md:max-w-2xl " action="/books/search">
+                    <input type="search" name="q" class="searchBar placeholder-primary" placeholder="Rechercher un titre, auteur, ISBN...">
+                    <button type="submit" class="absolute right-4 top-1/2 transform -translate-y-1/2 rounded p-1" title="Rechercher" aria-label="Rechercher">
+                        <svg class="text-primary fill-current w-6 h-6" viewBox="0 0 32 32" x="0px" y="0px">
+                            <g data-name="12"><path d="M28.14,26.73l-6.4-6.4A10,10,0,0,0,6.93,6.93a10,10,0,0,0,13.4,14.81l6.4,6.4a1,1,0,0,0,1.41-1.41ZM8.34,19.66a8,8,0,1,1,11.31,0A7.95,7.95,0,0,1,8.34,19.66Z"/></g>
+                        </svg>
+                        <span class="sr-only">Lancer la recherche</span>
+                    </button>
+                    </form>
+                </div>
+            </header>
+        {% endblock %}
+
+        {% block nav %}
+            <nav class="navContent max-xs:max-w-full max-xl:hidden w-full ">
+                <ul class="border-b border-light">
+                    <!-- liens categories x 9 : -->
+                    {% for i in 0..8 %}
+                        <li class="">
+                            <a href="#" class="block text-lg px-5 py-3 hover:text-primary hover:underline">Catégories</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <ul class="py-1">
+                    <!-- liens internes x 4 : -->
+                    {% for i in 0..3 %}
+                        <li class="">
+                            <a href="#" class="block text-sm px-5 py-2 hover:text-primary hover:underline">Liens secondaires</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </nav>
+        {% endblock %}
+        
+        {% block main %}
+            <main class="xl:pl-60 flex justify-center">
+                <article class="px-3 py-8 lg:p-12 w-full max-w-[1164px]">
+                    {% block content %}{% endblock %}
+                </article>
+            </main>
+        {% endblock %}
+
     </body>
 </html>
