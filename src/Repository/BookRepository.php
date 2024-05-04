@@ -36,6 +36,7 @@ final class BookRepository
         }
 
         usort($this->books, fn (Book $book): int => $book->getWarehousedAt() > $book->getWarehousedAt() ? 1 : -1);
+
     }
 
     /**

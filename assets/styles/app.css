@@ -2,20 +2,152 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: 'FrancoisOne';
-  src: url('/assets/fonts/FrancoisOne-Regular.ttf');
-  font-weight: 400;
+@layer base {
+  @font-face {
+    font-family: 'FrancoisOne';
+    src: url('/assets/fonts/FrancoisOne-Regular.ttf');
+    font-weight: 400;
+  }
+
+  @font-face {
+    font-family: 'Poppins';
+    src: url('/assets/fonts/Poppins-Regular.ttf');
+    font-weight: 400;
+  }
+
+  @font-face {
+    font-family: 'Poppins';
+    src: url('/assets/fonts/Poppins-Bold.ttf');
+    font-weight: 600;
+  }
+
+  :root {
+    --border: 1px solid theme("colors.light");
+    --4cols: calc((100% - 3rem) / 4);
+    --3cols: calc((100% - 2rem) / 3);
+    --2cols: calc((100% - 1rem) / 2);
+  }
+
+  html {
+      font-family: "Poppins", "Verdana", "Lucida Grande", sans-serif;
+      outline-color: theme("colors.primary-darker");
+  }
+
+  input:focus-visible,
+  button:focus-visible,
+  a:focus-visible {
+      outline: theme("colors.primary-darker") auto 2px;
+  }
 }
 
-@font-face {
-  font-family: 'Poppins';
-  src: url('/assets/fonts/Poppins-Regular.ttf');
-  font-weight: 400;
+@layer components {
+  /* animate nav opener burger */
+  .navToggle {
+    padding: 8px;
+    width: 46px;
+    height: 41px;
+    cursor: pointer;
+  }
+  .navToggle__bar,
+  .navToggle__bar:before,
+  .navToggle__bar:after {
+      display: inline-block;
+      width: 30px;
+      height: 5px;
+      border-radius: 3px;
+      background-color: theme(colors.primary);
+      transition: all 300ms ease-in-out;
+  }
+  .navToggle__bar {
+      position: relative;
+  }
+  .navToggle__bar:before,
+  .navToggle__bar:after {
+      position: absolute;
+      content: "";
+      left: 0;
+  }
+  .navToggle__bar:before {
+      top: 10px;
+  }
+  .navToggle__bar:after {
+      bottom: 10px;
+  }
+  .navOpener:hover .navOpener__bar {
+      background-color: theme(colors.primary-darker);
+  }
+  .navToggle.active .navToggle__bar {
+      background-color: transparent;
+  }
+  .navToggle.active .navToggle__bar:before {
+      top: 0;
+      transform: rotate(45deg);
+  }
+  .navToggle.active .navToggle__bar:after {
+      top: 0;
+      transform: rotate(-45deg);
+  }
+  /* nav opener end */
+
+  .navContent {
+      position: fixed;
+      top: 5.5rem;
+      z-index: 10;
+      max-width: 15rem;
+      max-height: calc(100dvh - 5.5rem);
+      overflow-y: auto;
+      background-color: theme("colors.white");
+      border-bottom-right-radius: 0.5rem;
+      box-shadow: 5px 5px 20px -5px theme("colors.medium");
+  }
+
+  .searchBar {
+      width: 100%;
+      border-radius: 3rem;
+      border: 2px solid theme("colors.primary");
+      padding: 0.5rem 3rem 0.5rem 1rem;
+      color: theme("colors.primary");
+  }
+
+  .button {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    border-radius: 3rem;
+    padding: 0.5rem 1rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    border: 2px solid theme("colors.primary");
+    background-color: theme("colors.white");
+    color: theme("colors.primary");
+  }
+  .button:hover,
+  .button:focus-visible {
+      border-color: theme("colors.white");
+      background-color: theme("colors.primary-darker");
+      color: theme("colors.white");
+  }
+
+  /* custom swiper navigation*/
+  *[class^="swiper-button-"]{
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    background-color: theme("colors.primary-transparent");
+    color: theme("colors.primary");
+    border: 2px solid transparent;
+  }
+  *[class^="swiper-button-"]:hover,
+  *[class^="swiper-button-"]:focus-visible{
+    border-color: theme("colors.primary");;
+  }
+  *[class^="swiper-button-"]:after{
+    font-size: 2rem;
+    font-weight: bolder;
+  }
+  /* end custom swiper pagination*/
+
 }
 
-@font-face {
-  font-family: 'Poppins';
-  src: url('/assets/fonts/Poppins-Bold.ttf');
-  font-weight: 600;
+@layer utilities {
 }
